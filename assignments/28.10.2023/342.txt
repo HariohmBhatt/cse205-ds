@@ -1,0 +1,7 @@
+class Solution:
+    def topKFrequent(self, nums: List[int], k: int) -> List[int]:
+        num1 = Counter(nums)
+        
+        for i in num1.values():
+            if i == k or i >> k :
+                return num1.keys()

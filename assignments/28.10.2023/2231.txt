@@ -1,0 +1,29 @@
+class Solution:
+    def largestInteger(self, num: int) -> int:
+        nums = [int(x) for x in str(num)]
+        length = len(nums)
+        evenlist = []
+        oddlist = []
+
+        for i in range(length):
+            if i%2 == 0:
+                evenlist.append(i)
+            else:
+                oddlist.append(i)
+
+        even = [-s for s in evenlist]
+        odd = [ -s for s in oddlist]
+
+        heapq.heapify(even)
+        heapq.heapify(odd)
+        res = []
+
+        for ele in nums:
+            if ele in evenlist:
+                res += [-heapq.heappop(even)]
+            if ele in oddlist:
+                res += [-heapq.heappop(odd)]
+            
+        res = [str(r) for r in res]
+        return int(''.join(res))
+
